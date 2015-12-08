@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="./css/jquery.mobile-1.3.2.css" />
+<link rel="stylesheet" href="css/jqm-docs.css" />
+<script type="text/javascript" src="./js/jquery-1.9.1.js"></script>
+<script src="js/jqm-docs.js"></script>
+<script type="text/javascript" src="./js/jquery.mobile-1.3.2.js"></script>
+<script src="js/main.js"></script>
+<script>
+var xmlhttp = new XMLHttpRequest();
+var url = "http://210.107.198.21:8085/Test_Server2/";
+xmlhttp.open("GET", "210.107.198.21:8085/Test_Server2/", true);
+xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        myFunction(xmlhttp.responseText);
+        document.getElementById("id02").innerHTML = xmlhttp.responseText;
+    }
+}
+xmlhttp.send();
+function myFunction(response) {
+    var arr = JSON.parse(response);
+    var i;
+    var out = "<table>";
+
+    for(i = 0; i < arr.length; i++) {
+        out += "<tr><td>" +
+        arr[i].Name +
+        "</td><td>" +
+        arr[i].City +
+        "</td><td>" +
+        arr[i].Country +
+        "</td></tr>";
+    }
+    out += "</table>";
+    document.getElementById("id01").innerHTML = out;
+}
+</script>
+</head>
+<body>
+	<button onclick="userView()">UserInfo View</button>
+	<div id="demo"></div>
+
+	<div id="userViewArea">onUserViewArea</div>
+	<a href="http://210.107.198.21:8085/Test_Server2/">aaaaaa</a>
+<div id="id01"></div>
+<div id="id02"></div>
+
+
+</body>
+</html>
